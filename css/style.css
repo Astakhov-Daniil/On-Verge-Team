@@ -1,0 +1,480 @@
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    background-color: #f4f3f4;
+}
+
+img {
+    display: flex;
+    text-align: justify;
+    position: center;
+    background-color: rgba(0, 0, 0, 0);
+    text-align: justify;
+    width: 100%;
+    height: 90%;
+    padding: 0;
+    justify-content: space-between;
+    animation-name: img-anim;
+    animation-duration: 1s;
+    background-size: 300%;
+}
+
+@keyframes img-anim {
+    0% {
+        opacity: 0;
+    }
+    50% {}
+    100% {
+        opacity: 1;
+    }
+}
+
+h3,
+h4 {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 150vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 50px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    position: relative;
+    min-height: calc(100vh - 360px);
+    min-width: calc(100% - 100px);
+    display: flex;
+    align-items: center;
+    padding: 50px;
+    border-radius: 15px;
+}
+
+h1 {
+    font-size: 100px;
+    position: absolute;
+    margin-top: -790px;
+    margin-left: 140px;
+}
+
+.container h2 {
+    font-size: 52px;
+    text-align: center;
+    margin-left: 19px;
+}
+
+.twomesto {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(to left, #FFE5BD, #FFFDFA);
+    box-shadow: 0.4em 0.4em 5px rgba(122, 122, 122, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    left: 170px;
+    padding: 50px;
+    border-radius: 15px;
+    transition: 0.5s;
+    top: 100px;
+}
+
+.twomesto img,
+.onemesto img,
+.threemesto img {
+    position: absolute;
+    width: 40%;
+    height: 40%;
+    left: 30%;
+    top: 11%;
+    border-radius: 50%;
+    box-shadow: 0.4em 0.4em 5px rgba(122, 122, 122, 0.3);
+}
+
+.otherplayers img {
+    position: absolute;
+    width: 50px;
+    height: 60%;
+    left: 14%;
+    border-radius: 50%;
+}
+
+.onemesto {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background-color: #FFE5BD;
+    box-shadow: 0.4em 0.4em 5px rgba(122, 122, 122, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    left: 650px;
+    top: 100px;
+    padding: 50px;
+    border-radius: 15px;
+    transition: 0.5s;
+}
+
+.onemesto:hover {
+    top: 80px;
+    background-color: #FED29F;
+    transition: 0.5s;
+}
+
+.twomesto:hover {
+    top: 80px;
+    background: linear-gradient(to left, #FED29F, #FFFDFA);
+    transition: 0.5s;
+}
+
+.threemesto:hover {
+    top: 80px;
+    background: linear-gradient(to right, #FED29F, #FFFDFA);
+    transition: 0.5s;
+}
+
+.threemesto {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(to right, #FFE5BD, #FFFDFA);
+    box-shadow: 0.4em 0.4em 5px rgba(122, 122, 122, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    right: 170px;
+    padding: 50px;
+    border-radius: 15px;
+    transition: 0.5s;
+    top: 100px;
+}
+
+.container h3 {
+    font-size: 35px;
+    color: black;
+    font-weight: 100;
+    display: flex;
+    align-items: center;
+    right: 40%;
+    bottom: 34%;
+    position: absolute;
+}
+
+.container h4 {
+    font-size: 20px;
+    color: black;
+    font-weight: 100;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    right: 41%;
+    bottom: 26%;
+}
+
+.container button {
+    position: relative;
+    background-color: white;
+    text-decoration: none;
+    font-size: 25px;
+    width: 200px;
+    outline: none;
+    margin-top: 100%;
+    padding: .5em 1.5em;
+    margin-left: 50px;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.container button:hover {
+    background-color: black;
+    color: white;
+}
+
+.container button:active {
+    background-color: white;
+    color: black;
+}
+
+.otherplayers {
+    position: relative;
+    height: 80px;
+    width: 690px;
+    text-align: justify;
+    margin-top: 15px;
+    display: flex;
+    text-align: center;
+    background-color: #FFE5BD;
+    box-shadow: 0.4em 0.4em 5px rgba(122, 122, 122, 0.3);
+    align-items: center;
+    border-radius: 15px;
+    transition: 0.5s;
+    top: -8px;
+}
+
+.otherplayers h3 {
+    left: 22%;
+    top: 50%;
+    width: 300px;
+    height: auto;
+}
+
+.otherplayers h4 {
+    left: 50%;
+    top: 47%;
+    width: 300px;
+    height: auto;
+}
+
+.otherplayers button {
+    background-color: white;
+    text-decoration: none;
+    font-size: 20px;
+    width: 120px;
+    position: relative;
+    outline: none;
+    margin-top: 0px;
+    margin-right: 1px;
+    left: 65%;
+    padding: .5em 1.5em;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer
+}
+
+.topothers .otherplayers:hover {
+    top: -20px;
+    background-color: #FED29F
+}
+
+.otherplayers h2 {
+    color: white;
+    left: 20%;
+    top: 50%;
+    width: 0px;
+    height: 50px;
+}
+
+.topothers {
+    display: grid;
+    grid-template-columns: 715px 720px;
+    position: absolute;
+    top: 105%;
+    left: 150px;
+}
+
+.vkd,
+.vkk,
+.vks {
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    right: 17.8%;
+    width: 40px;
+    height: 40px;
+}
+
+.contactsteam {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    top: 750%;
+}
+
+.contactsteam .endimg {
+    position: absolute;
+    height: 440px;
+    bottom: 0%;
+    width: 100%;
+}
+
+.contactsteam .vks {
+    top: 38.5%;
+}
+
+.contactsteam .vkd {
+    top: 48.3%;
+}
+
+.contactsteam .vkk {
+    bottom: 32.7%;
+}
+
+.infomatch {
+    position: fixed;
+    width: 500px;
+    height: 600px;
+    background-color: #f4f3f4;
+    box-shadow: 0.4em 0.4em 5px rgba(122, 122, 122, 0.3);
+    display: flex;
+    left: 39%;
+    top: 5%;
+    padding: 50px;
+    border-radius: 15px;
+    visibility: hidden;
+}
+
+.plro {
+    position: relative;
+    width: 190px;
+    height: 280px;
+    background-color: #FFE5BD;
+    box-shadow: 0.4em 0.4em 5px rgba(122, 122, 122, 0.3);
+    border-radius: 15px;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.plrs {
+    position: absolute;
+    bottom: 15%;
+    width: 390px;
+    height: 160px;
+    background-color: #FFE5BD;
+    box-shadow: 0.4em 0.4em 5px rgba(122, 122, 122, 0.3);
+    left: 11%;
+    border-radius: 15px;
+}
+
+.infomatch button {
+    position: absolute;
+    background-color: white;
+    font-size: 30px;
+    width: 160px;
+    margin-top: 97%;
+    margin-left: 130px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 0;
+    outline: none;
+}
+
+.infomatch button:hover {
+    background-color: black;
+    color: white;
+}
+
+.infomatch button:active {
+    background-color: white;
+    color: black;
+}
+
+.readfile input {
+    height: 30px;
+    width: 200px;
+    font-size: 25px;
+    margin-left: 20px;
+    margin-top: 60px;
+}
+
+.readfile button {
+    background-color: white;
+    font-size: 30px;
+    width: 320px;
+    height: 60px;
+    margin-top: 25px;
+    border-radius: 10px;
+}
+
+.readfile h2 {
+    font-size: 40px;
+    margin-top: 60px;
+    margin-left: 20px;
+    right: 60px;
+}
+
+.gamepoleEmpty {
+    position: fixed;
+    top: -200%;
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+}
+
+.gamepole {
+    position: fixed;
+    top: 0%;
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
+.gamepole img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    z-index: 4;
+    font-size: 75%;
+}
+
+.gamepole h3 {
+    position: absolute;
+    z-index: 6;
+    top: 10px;
+    left: 70px;
+    font-size: 100px;
+}
+
+.gamepole h4 {
+    position: relative;
+    z-index: 6;
+    top: -50px;
+    width: 900px;
+    left: 70px;
+    margin-top: 230px;
+    font-size: 65px;
+}
+
+.gamepole button {
+    position: relative;
+    height: 100px;
+    width: 300px;
+    margin-left: 100px;
+    left: 640px;
+    top: 830px;
+    font-size: 35px;
+    z-index: 6;
+    padding: .5em 1.5em;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    background-color: white;
+}
+
+.linetochka {
+    position: absolute;
+    display: grid;
+    width: 950px;
+    height: 32px;
+    top: 13%;
+    left: 31.2%;
+    background-color: rgba(0, 0, 0, 0);
+    grid-template-columns: repeat(20, 32px);
+    grid-template-rows: repeat(20, 32px);
+    grid-column-gap: 4px;
+    grid-row-gap: 2px;
+    z-index: 8;
+}
+
+.tochka {
+    background-color: rgba(0, 0, 0, 0);
+    width: 32px;
+    height: 32px;
+    z-index: 8;
+}
