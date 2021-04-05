@@ -128,6 +128,7 @@ document.getElementById('but_file').addEventListener('click', function() {
                             Pole.classList.remove('gamepole')
                             Pole.classList.add('gamepoleEmpty')
                         }
+
                         button1.onclick = function() {
 
                             let game = AllPlayersData[j][1].split('\n')
@@ -155,32 +156,39 @@ document.getElementById('but_file').addEventListener('click', function() {
                             let line = document.createElement('div')
                             line.setAttribute('class', 'linetochka')
 
-                            Main_motion = game[4].split('.')
-                            let Toch_Mas = new Array(400)
-                            for (let line_index = 0; line_index < 400; line_index++) {
+                            if (game[4].indexOf('B') == -1 && game[4].indexOf('W') == -1) {
+                                h3.textContent = 'Нет данных о ходах'
+                            } else {
+                                Mas_Data = game[4].split('.')
 
-                                let toch = document.createElement('div')
-                                toch.setAttribute('class', 'tochka')
-                                Toch_Mas[line_index] = toch
-                                line.appendChild(toch)
-                            }
+                                for (let line_index = 0; line_index < 400; line_index++) {
 
-                            Pole.appendChild(line)
+                                    let toch = document.createElement('div')
+                                    toch.setAttribute('class', 'tochka')
 
-                            for (let g = 0; g < Main_motion.length; g++) {
+                                    for (let i_Pole = 0; i_Pole < 19 * 19; i_Pole++) {
 
-                                motion = Main_motion[g].split('')
-                                console.log(motion)
+                                        y_Pole = img_index / 19
+                                        x_Pole = i_Pole - (19 * y_Pole) - 1
+                                        Mas_motion = Mas_Data[i_Pole].split("")
 
-                                let X = String(motion[1]).charCodeAt(0) - 97
-                                let Y = String(motion[2]).charCodeAt(0) - 97
-                                if (motion[0] == 'B') {
-                                    Toch_Mas[X][20 * X + Y].style.backgroundColor = ('black')
-                                    console.log('black')
-                                }
-                                if (motion[0] == 'W') {
-                                    Toch_Mas[X][20 * X + Y].style.backgroundColor = ('white')
-                                    console.log('black')
+                                        for (let mx = 0; mx < Mas_Data.length; mx++) {
+
+                                            if (Mas_motion[1].codePointAt(0) - 97 == x_Pole) {
+                                                if (Mas_motion[2].codePointAt(0) - 97 == y_Pole) {
+                                                    if (Mas_motion[0] == 'B') {
+                                                        toch.style.backgroundColor = ('black')
+                                                    }
+                                                    if (Mas_motion[0] == 'W') {
+                                                        toch.style.backgroundColor = ('white')
+                                                    }
+
+                                                }
+                                            }
+                                        }
+
+                                        line.appendChild(toch)
+                                    }
                                 }
                             }
 

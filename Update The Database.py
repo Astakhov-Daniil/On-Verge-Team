@@ -32,6 +32,11 @@ for i in range(100):
     Main_string = Main_string[Main_string.find('>') + 1 : ]
     Name = Main_string[0:Main_string.find('<')] # Строка, которая хранит в себе имя игрока
 
+    print(Name)
+    if Name == 'Tolstoi':
+        print(Name)
+        continue
+
     # В данной строке находится HTML файл со страници, на которой находится информация про отдельноо игрока
     Secondary_string = requests.get('https://www.gokgs.com/gameArchives.jsp?user=' + Name).text
     Secondary_string = Secondary_string[Secondary_string.find('(') + 1 : ] # Немнго укорациваем нашу строку(делаем меньше)
@@ -45,35 +50,40 @@ for i in range(100):
     year = 2021
     month = 12
 
-    # В данном цыкле мы ищем последий год, в котором была сыграна последняя партия
-    # Например, если у игрока нет игр за весь 2021 год, то мы ищем игры за 2020 год и так далее
-    while Secondary_string.find('<td>' + str(year) + '</td>') == -1:
-        year = year - 1
-
-    # Сокращаем содержимое строки
-    Secondary_string = Secondary_string[Secondary_string.find('<td>' + str(year) + '</td>') : ]
-
-    # В данном цыкле мы ищем последий месяц, в котором была сыграна последняя партия
-    # Например, если у игрока нет игр за весь Декабрь(12 месяц), то мы ищем игры за Ноябрь(11 месяц) и так далее
-    while Secondary_string.find('month=' + str(month)) == -1:
-        month = month - 1
-
     # Особенность сайта в том, что если игрок сыграл хоть одну партию в нашем месяце на данный момент
     # (на момент написания кода - Март), то она отображается сразу при запуске страницы и ссылка на последнем месяце
     # уже не работает. В ином случае не выводится ничего, но ссылка на последний месяц доступна
     # В данном условии проверяется такая ситуация
-    if brace != '0':
-        month = month + 1
+    if brace == '0':
+        Party_string = Secondary_string
+    else:
 
-    # Мы нашли месяц и год последней партии, пора открыть страницу с таблицей игр данного игрока
-    Party_string = requests.get('https://www.gokgs.com/gameArchives.jsp?user=' + Name +  '&year=' + str(year) + '&month=' + str(month)).text
-    Party_string = Party_string[Party_string.find('(') + 1 : ]
-    brace = Party_string[ : Party_string.find('g') - 1] # Здесь мы ищем количество партий за данный месяц
+        # В данном цыкле мы ищем последий год, в котором была сыграна последняя партия
+        # Например, если у игрока нет игр за весь 2021 год, то мы ищем игры за 2020 год и так далее
+        while Secondary_string.find('<td>' + str(year) + '</td>') == -1:
+            year = year - 1
 
-    # Бывают такие ситуации, когда за меся угрок сыграл только олну партию. 
-    # И в таком случае невозможно получить ссылку на вторую партию. Данное условие проверяет такую ситуацию
+        # Сокращаем содержимое строки
+        Secondary_string = Secondary_string[Secondary_string.find('<td>' + str(year) + '</td>') : ]
+
+        # В данном цыкле мы ищем последий месяц, в котором была сыграна последняя партия
+        # Например, если у игрока нет игр за весь Декабрь(12 месяц), то мы ищем игры за Ноябрь(11 месяц) и так далее
+        while Secondary_string.find('month=' + str(month)) == -1:
+            if month == -1:
+                month = 12
+                break
+            month = month - 1
+
+        # Мы нашли месяц и год последней партии, пора открыть страницу с таблицей игр данного игрока
+        Party_string = requests.get('https://www.gokgs.com/gameArchives.jsp?user=' + Name +  '&year=' + str(year) + '&month=' + str(month)).text
+        Party_string = Party_string[Party_string.find('(') + 1 : ]
+        brace = Party_string[ : Party_string.find('g') - 1] # Здесь мы ищем количество партий за данный месяц
+
+        # Бывают такие ситуации, когда за меся угрок сыграл только олну партию. 
+        # И в таком случае невозможно получить ссылку на вторую партию. Данное условие проверяет такую ситуацию
+    
     if brace == '1':
-
+        
         while Party_string.find('href="h') == -1:
             if month == 1:
                 year = year - 1
@@ -87,6 +97,7 @@ for i in range(100):
         # Данную единственную партию записываем в наш массив партий, т.к. она и вправду самая последняя
         Party_string = Party_string[Party_string.find('href="h') + 6 : ]
         part_last[0] = Party_string[ : Party_string.find('"')]
+        Party_string = Party_string[Party_string.find('"') : ]
 
         # Здесь мы заполныем полу массива, которое отвечает за тип партии
         if Party_string.find('Ranked') != -1:
@@ -202,9 +213,10 @@ for i in range(100):
     File_FOR_JS.write(Name + '\n')
     File_FOR_JS.write('PARTY' + '\n')
 
+    Sgf_string = Sgf_string[Sgf_string.find('PW') : ]
+
     # Для начала найдём и напечатаем имена и цвет камней наших участников
     # Белые камни - имя
-    Sgf_string = Sgf_string[Sgf_string.find('PW') : ]
     File_FOR_JS.write('Белые ' + Sgf_string[3 : Sgf_string.find(']')] + '\n')
     # Черные камни - имя
     Sgf_string = Sgf_string[Sgf_string.find('PB') : ]
@@ -315,11 +327,10 @@ for i in range(100):
     File_FOR_JS.write('\n' + 'END' + '\n')
     #
     #  
-    print(Name)
 
 # И не забыть закрыть файлик
 File_FOR_JS.close() 
-    
+
 
 # ВОТ И КОДУ КОНЕЦ! 
 # Прошу перейти в JS-файл для дальнейшего ознакомления с проектом
